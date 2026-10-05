@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[Your Name] | Teaching Programming Portfolio</title>
+  <meta name="description" content="Portfolio of [Your Name], a [Major] student interested in user-centered technology, business, and product management.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ---------- Design tokens ---------- */
+    :root {
+      --paper: #F4F7F9;
+      --surface: #FFFFFF;
+      --ink: #16213A;
+      --muted: #4C5871;
+      --line: #C9D3DD;
+      --link: #2B55D9;
+      --highlight: #FFD866;
+
+      --font-display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+      --font-body: "Public Sans", "Helvetica Neue", Arial, sans-serif;
+
+      --measure: 62ch;
+      --page: 1040px;
+    }
+
+    /* ---------- Base ---------- */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 1.0625rem;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    img, iframe { max-width: 100%; }
+    a { color: var(--link); text-underline-offset: 3px; }
+    a:hover { text-decoration-thickness: 2px; }
+    :focus-visible { outline: 3px solid var(--link); outline-offset: 3px; border-radius: 2px; }
+
+    .wrap { max-width: var(--page); margin: 0 auto; padding: 0 24px; }
+    p { margin: 0 0 1em; max-width: var(--measure); }
+
+    h1, h2, h3 {
+      font-family: var(--font-display);
+      line-height: 1.12;
+      letter-spacing: -0.015em;
+      margin: 0 0 0.5em;
+    }
+    h1 { font-size: clamp(2.5rem, 6.5vw, 4.5rem); font-weight: 700; }
+    h2 { font-size: clamp(1.75rem, 3.5vw, 2.25rem); font-weight: 700; }
+    h3 { font-size: 1.375rem; font-weight: 500; }
+
+    /* ---------- Header ---------- */
+    .site-header { border-bottom: 1px solid var(--line); }
+    .site-header .wrap {
+      display: flex; flex-wrap: wrap; gap: 8px 32px;
+      align-items: center; justify-content: space-between;
+      padding-top: 18px; padding-bottom: 18px;
+    }
+    .brand {
+      font-family: var(--font-display); font-weight: 700; font-size: 1.125rem;
+      color: var(--ink); text-decoration: none;
+    }
+    nav ul { display: flex; gap: 24px; list-style: none; margin: 0; padding: 0; }
+    nav a { color: var(--ink); text-decoration: none; font-weight: 500; padding: 4px 0; border-bottom: 2px solid transparent; }
+    nav a:hover { border-bottom-color: var(--ink); }
+
+    /* ---------- Hero / intro ---------- */
+    .hero { padding: 72px 0 56px; }
+    .hero-grid { display: grid; gap: 48px; align-items: start; }
+    @media (min-width: 800px) { .hero-grid { grid-template-columns: 1.5fr 1fr; } }
+
+    .lede { font-size: 1.3125rem; line-height: 1.5; color: var(--ink); max-width: 36ch; margin-bottom: 1.5em; }
+
+    .photo {
+      aspect-ratio: 4 / 5; width: 100%; max-width: 360px;
+      border: 2px dashed var(--line); border-radius: 6px; background: var(--surface);
+      display: grid; place-items: center; text-align: center; padding: 16px;
+      color: var(--muted); font-size: 0.95rem; overflow: hidden;
+    }
+    .photo:has(img) { border: 0; padding: 0; }
+    .photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; display: block; }
+
+    /* Profile facts */
+    .profile { margin: 0; display: grid; grid-template-columns: max-content 1fr; max-width: 520px; border-top: 1px solid var(--ink); }
+    .profile dt, .profile dd { margin: 0; padding: 10px 0; border-bottom: 1px solid var(--line); }
+    .profile dt { font-weight: 600; padding-right: 32px; }
+
+    /* ---------- Sections ---------- */
+    section { padding: 64px 0; border-top: 1px solid var(--line); }
+
+    /* The one memorable element: the user story */
+    .story {
+      background: var(--highlight); color: var(--ink);
+      padding: 28px 32px; border-radius: 4px; max-width: 640px;
+      margin: 32px 0 0; transform: rotate(-0.6deg);
+      box-shadow: 4px 4px 0 var(--ink);
+    }
+    .story p { margin: 0; font-family: var(--font-display); font-size: 1.375rem; line-height: 1.4; font-weight: 500; }
+    .story b { font-weight: 700; }
+    @media (prefers-reduced-motion: reduce) { .story { transform: none; } html { scroll-behavior: auto; } }
+
+    /* ---------- Projects ---------- */
+    .intro-note { color: var(--muted); }
+    .project { display: grid; gap: 24px; padding: 40px 0; border-top: 1px solid var(--line); }
+    .project:first-of-type { margin-top: 24px; }
+    @media (min-width: 800px) { .project { grid-template-columns: 1fr 1.4fr; gap: 40px; } }
+
+    .project .meta { color: var(--muted); font-size: 0.95rem; margin-bottom: 0.75em; }
+    .status {
+      display: inline-block; padding: 2px 10px; border-radius: 999px;
+      border: 1px solid var(--line); background: var(--surface);
+      font-size: 0.875rem; color: var(--muted); margin-left: 8px;
+    }
+
+    .video {
+      aspect-ratio: 16 / 9; width: 100%;
+      background: var(--surface); border: 2px dashed var(--line); border-radius: 6px;
+      display: grid; place-items: center; text-align: center; padding: 16px;
+      color: var(--muted); font-size: 0.95rem; overflow: hidden;
+    }
+    .video iframe { width: 100%; height: 100%; border: 0; display: block; }
+    .video.has-content { border: 0; padding: 0; background: #000; }
+
+    /* ---------- Contact / footer ---------- */
+    .contact p { font-size: 1.25rem; }
+    footer { border-top: 1px solid var(--line); padding: 24px 0 48px; color: var(--muted); font-size: 0.925rem; }
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="#top">[Your Name]</a>
+      <nav aria-label="Main">
+        <ul>
+          <li><a href="#top">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#work">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ============ INTRODUCTION ============ -->
+    <div class="wrap hero">
+      <div class="hero-grid">
+        <div>
+          <h1>Hi, I'm [Your Name].</h1>
+          <p class="lede">
+            I'm a [year] [major] major at [school]. I'm interested in
+            user-centered technology and business, and I'm working toward a career in product management.
+          </p>
+
+          <dl class="profile">
+            <dt>Name</dt>        <dd>[Your Full Name]</dd>
+            <dt>Major</dt>       <dd>[Your Major]</dd>
+            <dt>School</dt>      <dd>[Your School]</dd>
+            <dt>Year</dt>        <dd>[Your Year, e.g. Junior]</dd>
+            <dt>Interests</dt>   <dd>User-centered technology, business, product management</dd>
+          </dl>
+        </div>
+
+        <div class="photo"><img src="images/me.jpg" alt="Portrait of [Your Name]"></div>
+      </div>
+    </div>
+
+    <!-- ============ ABOUT ============ -->
+    <section id="about">
+      <div class="wrap">
+        <h2>About me</h2>
+        <p>
+          Write 2 to 3 sentences about what brought you to computing and to this class.
+          What do you want people (a principal, an interviewer, a classmate) to know about you?
+        </p>
+        <p>
+          Write 2 to 3 sentences about why user-centered design and product management
+          interest you. Mention a product you admire, or a problem you noticed when someone
+          struggled to use a piece of technology.
+        </p>
+
+        <div class="story">
+          <p>
+            As a <b>future product manager</b>, I want to understand how people learn and use
+            technology, so that I can help build products that fit their needs.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROJECTS ============ -->
+    <section id="work">
+      <div class="wrap">
+        <h2>Selected work from [Course Number and Name]</h2>
+        <p class="intro-note">
+          Videos, code explanations, and projects from this class. I add to this page as the course goes on.
+        </p>
+
+        <!--
+          HOW TO ADD A VIDEO:
+          1. Upload your video to YouTube (set it to Unlisted or Public).
+          2. Copy the ID from the URL (the part after v=).
+          3. Replace the placeholder text inside <div class="video"> with:
+             <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Describe the video" allowfullscreen></iframe>
+          4. Add the class "has-content" to that div: <div class="video has-content">
+        -->
+
+        <article class="project">
+          <div>
+            <p class="meta">Week 1</p>
+            <h3>[Project or video title]</h3>
+            <p>Describe what you made and what you were trying to teach. Then add one thing you learned from doing it.</p>
+          </div>
+          <div class="video">Video goes here</div>
+        </article>
+
+        <article class="project">
+          <div>
+            <p class="meta">Week 2</p>
+            <h3>[Example code explanation title]</h3>
+            <p>Explain the concept you taught and who your audience was.</p>
+          </div>
+          <div class="video">Video goes here</div>
+        </article>
+
+        <article class="project">
+          <div>
+            <p class="meta">Week 3 <span class="status">Coming soon</span></p>
+            <h3>[Title]</h3>
+            <p>I'll add this once the assignment is done.</p>
+          </div>
+          <div class="video">Coming soon</div>
+        </article>
+
+        <article class="project">
+          <div>
+            <p class="meta">Final project <span class="status">Coming soon</span></p>
+            <h3>[Final project title]</h3>
+            <p>
+              Link to your shared Snap or Scratch project here, plus a short note on who it's for
+              and how you'd improve it based on feedback.
+            </p>
+            <!-- Example link: <p><a href="https://snap.berkeley.edu/..." target="_blank" rel="noopener">Play the project</a></p> -->
+          </div>
+          <div class="video">Video or project preview goes here</div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section id="contact" class="contact">
+      <div class="wrap">
+        <h2>Get in touch</h2>
+        <p>Email me at <a href="mailto:you@example.edu">you@example.edu</a></p>
+        <p>
+          <a href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener">LinkedIn</a>
+          <!-- Add more links here, such as GitHub or a personal site. -->
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap">Built with GitHub Pages. Last updated [Month Year].</div>
+  </footer>
+
+</body>
+</html>
